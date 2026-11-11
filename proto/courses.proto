@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package edutech.courses;
+
+// Contrato interno (gRPC) do serviço de cursos.
+service CourseService {
+  rpc GetCourse (GetCourseRequest) returns (Course);
+  rpc ListCourses (ListCoursesRequest) returns (ListCoursesResponse);
+}
+
+message GetCourseRequest { string id = 1; }
+message ListCoursesRequest {}
+
+message Course {
+  string id = 1;
+  string name = 2;
+  int32 seats_available = 3;
+}
+
+message ListCoursesResponse { repeated Course courses = 1; }
