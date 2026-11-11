@@ -10,6 +10,7 @@ O projeto demonstra uma arquitetura baseada em microsserviços para uma platafor
 - Igo Roberth Costa Martins
 - Hortencia Gomes Silva
 - Lucas Daniel Brito de Queiroz
+- Nicolas Gabriel Cunha de Sousa
 
 ## Visão geral da PoC
 
