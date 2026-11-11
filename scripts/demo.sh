@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Roteiro da demonstração ao vivo. Uso: ./scripts/demo.sh   (com `docker compose up -d --build` rodando)
-BASE=http://localhost:8080/api
+BASE=http://localhost:8081/api
 pause() { echo; read -rp "[Enter para continuar] " _; echo; }
 post() { curl -s -X POST $BASE/enrollments -H 'Content-Type: application/json' -H "Idempotency-Key: $1" -d "$2"; echo; }
 

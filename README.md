@@ -15,7 +15,7 @@ Pré-requisito: Docker com Docker Compose.
 
 ```bash
 docker compose up -d --build
-curl http://localhost:8080/api/courses
+curl http://localhost:8081/api/courses
 curl -X POST http://localhost:8080/api/enrollments \
   -H 'Content-Type: application/json' -H 'Idempotency-Key: abc-1' \
   -d '{"student_id":"igor","course_id":"AS201"}'
@@ -24,7 +24,7 @@ curl -X POST http://localhost:8080/api/enrollments \
 Demonstração completa (6 cenários, interativa): `./scripts/demo.sh`
 Encerrar: `docker compose down`
 
-## Endpoints (via gateway, porta 8080)
+## Endpoints (via gateway, porta 8081)
 | Método | Rota | Descrição |
 |---|---|---|
 | GET | `/api/courses` | Lista cursos |
@@ -54,7 +54,9 @@ C4Container
   Rel(gw, enr, "REST /enrollments")
   Rel(enr, crs, "gRPC GetCourse (timeout, retry, circuit breaker)")
 ```
-(Cole o bloco no GitHub, que renderiza Mermaid, ou em https://mermaid.live para exportar PNG/SVG.)
+## Diagrama C4
+
+![Diagrama C4 da arquitetura EduTech](docs/diagrama-c4.png)
 
 ## Limitações (deliberadas)
 Dados em memória (sem banco por serviço), fila de notificações em memória (sem Kafka/RabbitMQ), sem autenticação, sem Service Mesh no Compose (ver seção 6 do relatório para a extensão com Istio em Kubernetes), idempotência sem tratamento de requisições concorrentes com a mesma chave.
