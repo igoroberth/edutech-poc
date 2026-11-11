@@ -3,6 +3,12 @@
 Prova de Conceito da disciplina **Arquitetura de Software** (UEPA/CCNT, Profa. MSc Jacqueline Teixeira).
 Tema: **Microsserviços & Service Mesh**. Cenário: estudo de caso integrador **EduTech**.
 
+## Integrantes
+- Cybele Isabela dos Santos Silva
+- Igo Roberth Costa Martins
+- Hortencia Gomes Silva
+- Lucas Daniel Brito de Queiroz
+
 ## O que a PoC demonstra
 - Dois microsserviços independentes: `courses-service` (cursos) e `enrollment-service` (matrículas).
 - **API Gateway** (Nginx) como ponto único de entrada: roteamento, rate limiting, timeouts e `X-Request-ID`.
@@ -16,7 +22,7 @@ Pré-requisito: Docker com Docker Compose.
 ```bash
 docker compose up -d --build
 curl http://localhost:8081/api/courses
-curl -X POST http://localhost:8080/api/enrollments \
+curl -X POST http://localhost:8081/api/enrollments \
   -H 'Content-Type: application/json' -H 'Idempotency-Key: abc-1' \
   -d '{"student_id":"igor","course_id":"AS201"}'
 ```
@@ -54,6 +60,7 @@ C4Container
   Rel(gw, enr, "REST /enrollments")
   Rel(enr, crs, "gRPC GetCourse (timeout, retry, circuit breaker)")
 ```
+
 ## Diagrama C4
 
 ![Diagrama C4 da arquitetura EduTech](docs/diagrama-c4.png)
